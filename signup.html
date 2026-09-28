@@ -4,128 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sign Up - Sunday Funday Gear</title>
+    <title>User Sign-Up</title>
 
-    <!-- Bootstrap CDN -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Our Storefront CSS -->
+    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1 style="letter-spacing: 4px;">SUNDAY FUNDAY GEAR</h1>
-        <p class="welcome-text">Football • Friends • Sundays</p>
-    </header>
+    <div class="container mt-5">
+        <h1>User Sign-Up</h1>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#">Jerseys</a>
-        <a href="#">T-Shirts</a>
-        <a href="#">Hats</a>
-        <a href="signup.html">Sign Up</a>
-    </nav>
+        <form id="signupForm">
 
-    <!-- Main Content -->
-    <main class="container my-5">
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
 
-        <div class="row justify-content-center">
+                <input type="text"
+                       class="form-control"
+                       id="username"
+                       placeholder="Enter username"
+                       onfocusout="validate(this)">
 
-            <div class="col-md-6">
-
-                <div class="card shadow">
-
-                    <div class="card-body p-4">
-
-                        <h2 class="text-center mb-4">
-                            Create Your Account
-                        </h2>
-
-                        <form>
-
-                            <!-- Username -->
-                            <div class="mb-3">
-                                <label for="username" class="form-label">
-                                    Username
-                                </label>
-
-                                <input type="text"
-                                       class="form-control"
-                                       id="username"
-                                       placeholder="Enter your username"
-                                       required>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="mb-3">
-                                <label for="email" class="form-label">
-                                    Email
-                                </label>
-
-                                <input type="email"
-                                       class="form-control"
-                                       id="email"
-                                       placeholder="Enter your email"
-                                       required>
-                            </div>
-
-                            <!-- Password -->
-                            <div class="mb-3">
-                                <label for="password" class="form-label">
-                                    Password
-                                </label>
-
-                                <input type="password"
-                                       class="form-control"
-                                       id="password"
-                                       placeholder="Enter your password"
-                                       required>
-                            </div>
-
-                            <!-- Confirm Password -->
-                            <div class="mb-3">
-                                <label for="confirmPassword" class="form-label">
-                                    Confirm Password
-                                </label>
-
-                                <input type="password"
-                                       class="form-control"
-                                       id="confirmPassword"
-                                       placeholder="Confirm your password"
-                                       required>
-                            </div>
-
-                            <!-- Sign Up Button -->
-                            <div class="d-grid">
-                                <button type="submit">
-                                    Sign Up
-                                </button>
-                            </div>
-
-                        </form>
-
-                        <p class="text-center mt-3">
-                            <a href="index.html">Back to Storefront</a>
-                        </p>
-
-                    </div>
-
-                </div>
-
+                <div id="usernameError" class="text-danger"></div>
             </div>
 
-        </div>
 
-    </main>
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Sunday Funday Gear | Football • Friends • Sundays</p>
-    </footer>
+                <input type="text"
+                       class="form-control"
+                       id="email"
+                       placeholder="Enter email"
+                       onfocusout="validate(this)">
+
+                <div id="emailError" class="text-danger"></div>
+            </div>
+
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       placeholder="Enter password"
+                       onfocusout="validate(this)">
+
+                <div id="passwordError" class="text-danger"></div>
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">
+                    Confirm Password
+                </label>
+
+                <input type="password"
+                       class="form-control"
+                       id="confirmPassword"
+                       placeholder="Confirm password"
+                       onfocusout="validate(this)">
+
+                <div id="confirmPasswordError" class="text-danger"></div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">
+                Sign Up
+            </button>
+
+        </form>
+    </div>
+
+
+    <script>
+
+        function validate(obj) {
+
+            // Reset the field before checking it
+            obj.style.color = "";
+            obj.style.borderColor = "";
+
+            let errorMessage = "";
+
+            // Username validation
+            if (obj.id === "username") {
+
+                if (obj.value.trim() === "") {
+                    errorMessage = "Username is required.";
+                }
+            }
+
+
+            // Email validation
+            if (obj.id === "email") {
+
+                if (obj.value.trim() === "") {
+                    errorMessage = "Email is required.";
+                }
+                else {
+                    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    if (!emailPattern.test(obj.value)) {
+                        errorMessage = "Please enter a valid email address.";
+                    }
+                }
+            }
+
+
+            // Password validation
+            if (obj.id === "password") {
+
+                if (obj.value.trim() === "") {
+                    errorMessage = "Password is required.";
+                }
+            }
+
+
+            // Confirm Password validation
+            if (obj.id === "confirmPassword") {
+
+                if (obj.value.trim() === "") {
+                    errorMessage = "Confirm Password is required.";
+                }
+                else if (
+                    obj.value !== document.getElementById("password").value
+                ) {
+                    errorMessage = "Passwords do not match.";
+                }
+            }
+
+
+            // Display error
+            let errorBox = document.getElementById(obj.id + "Error");
+
+            if (errorMessage !== "") {
+
+                obj.style.color = "#FF0000";
+                obj.style.borderColor = "#FF0000";
+
+                errorBox.innerHTML = errorMessage;
+
+            }
+            else {
+
+                // Reset red formatting after valid input
+                obj.style.color = "";
+                obj.style.borderColor = "";
+
+                errorBox.innerHTML = "";
+            }
+        }
+
+
+        // Check every field when the form is submitted
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            validate(document.getElementById("username"));
+            validate(document.getElementById("email"));
+            validate(document.getElementById("password"));
+            validate(document.getElementById("confirmPassword"));
+
+            let username = document.getElementById("username").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (
+                username !== "" &&
+                email !== "" &&
+                emailPattern.test(email) &&
+                password !== "" &&
+                confirmPassword !== "" &&
+                password === confirmPassword
+            ) {
+                alert("Sign-up information is valid!");
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>
