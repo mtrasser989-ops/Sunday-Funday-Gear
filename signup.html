@@ -83,6 +83,15 @@
             </button>
 
         </form>
+
+
+        <!-- JSON Document -->
+        <div class="mt-4">
+            <h2>JSON Shopper Document</h2>
+
+            <pre id="jsonOutput"></pre>
+        </div>
+
     </div>
 
 
@@ -157,7 +166,6 @@
             }
             else {
 
-                // Reset red formatting after valid input
                 obj.style.color = "";
                 obj.style.borderColor = "";
 
@@ -171,11 +179,13 @@
 
             event.preventDefault();
 
+            // Validate all fields
             validate(document.getElementById("username"));
             validate(document.getElementById("email"));
             validate(document.getElementById("password"));
             validate(document.getElementById("confirmPassword"));
 
+            // Get values from the form
             let username = document.getElementById("username").value.trim();
             let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value;
@@ -183,6 +193,8 @@
 
             let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+
+            // Make sure the information is valid
             if (
                 username !== "" &&
                 email !== "" &&
@@ -191,7 +203,19 @@
                 confirmPassword !== "" &&
                 password === confirmPassword
             ) {
-                alert("Sign-up information is valid!");
+
+                // Create JSON object
+                let shopper = {
+                    username: username,
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                };
+
+                // Convert object to JSON and display it
+                document.getElementById("jsonOutput").textContent =
+                    JSON.stringify(shopper, null, 4);
+
             }
 
         });
