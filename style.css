@@ -119,3 +119,14 @@ footer {
     object-fit: cover;
     border-radius: 8px;
 }
+
+/* JSON Shopper Document */
+#jsonOutput {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    min-height: 50px;
+    white-space: pre-wrap;
+    font-family: monospace;
+}
